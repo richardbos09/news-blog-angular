@@ -1,4 +1,4 @@
-<nav class="navbar navbar-inverse" role="navigation">
+<!-- <nav class="navbar navbar-inverse" role="navigation">
   <div class="container">
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-menu-collapse">
@@ -17,4 +17,21 @@
       </ul>
     </div>
   </div>
-</nav>
+</nav> -->
+
+<div class="header clearfix">
+  <nav>
+    <ul class="nav nav-pills pull-right">
+      <li role="presentation" [routerLinkActive]="['active']" >
+        <a routerLink="/blogs" >Home</a>
+      </li>
+      <li role="presentation">
+        <a href="#">About</a>
+      </li>
+      <li role="presentation">
+        <a href="#">Contact</a>
+      </li>
+    </ul>
+  </nav>
+  <h3 class="text-muted">{{ title }}</h3>
+</div>

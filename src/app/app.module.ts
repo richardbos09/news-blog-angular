@@ -9,12 +9,22 @@ import { HttpModule, Http } from '@angular/http';
 import { RouterModule, Routes } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { BlogsComponent } from './components/blogs/blogs.component';
+import { ArchivesComponent } from './components/archives/archives.component';
+import { BlogPostsComponent } from './components/blogs/blog-posts/blog-posts.component';
+import { BlogPostComponent } from './components/blogs/blog-posts/blog-post/blog-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DashboardComponent,
     HeaderComponent,
+    FooterComponent,
+    BlogsComponent,
+    ArchivesComponent,
+    BlogPostsComponent,
+    BlogPostComponent,
   ],
   imports: [
     BrowserModule,
