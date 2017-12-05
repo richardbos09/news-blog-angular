@@ -14,6 +14,8 @@ import { BlogsComponent } from './components/blogs/blogs.component';
 import { ArchivesComponent } from './components/archives/archives.component';
 import { BlogPostsComponent } from './components/blogs/blog-posts/blog-posts.component';
 import { BlogPostComponent } from './components/blogs/blog-posts/blog-post/blog-post.component';
+import { ArchiveListComponent } from './components/archives/archive-list/archive-list.component';
+import { ArchiveItemComponent } from './components/archives/archive-list/archive-item/archive-item.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +27,8 @@ import { BlogPostComponent } from './components/blogs/blog-posts/blog-post/blog-
     ArchivesComponent,
     BlogPostsComponent,
     BlogPostComponent,
+    ArchiveListComponent,
+    ArchiveItemComponent,
   ],
   imports: [
     BrowserModule,

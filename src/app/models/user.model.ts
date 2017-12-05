@@ -1,7 +1,3 @@
-//
-// Domain class
-//
-
 export class User {
 
   private _name: string;
