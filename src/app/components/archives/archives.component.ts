@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ArchiveService } from '../../services/archive.service';
 
 @Component({
   selector: 'app-archives',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ArchivesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private serviceArchive: ArchiveService) { }
 
   ngOnInit() {
   }

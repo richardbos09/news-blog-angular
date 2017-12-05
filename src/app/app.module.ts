@@ -16,6 +16,9 @@ import { BlogPostsComponent } from './components/blogs/blog-posts/blog-posts.com
 import { BlogPostComponent } from './components/blogs/blog-posts/blog-post/blog-post.component';
 import { ArchiveListComponent } from './components/archives/archive-list/archive-list.component';
 import { ArchiveItemComponent } from './components/archives/archive-list/archive-item/archive-item.component';
+import { BlogService } from './services/blog.service';
+import { AuthorService } from './services/author.service';
+import { ArchiveService } from './services/archive.service';
 
 @NgModule({
   declarations: [
@@ -38,7 +41,10 @@ import { ArchiveItemComponent } from './components/archives/archive-list/archive
     BrowserAnimationsModule
   ],
   providers: [
-    UserService
+    UserService,
+    ArchiveService,
+    BlogService,
+    AuthorService
   ],
   bootstrap: [AppComponent]
 })
