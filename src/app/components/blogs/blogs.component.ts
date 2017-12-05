@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from '../../services/blog.service';
 
 @Component({
   selector: 'app-blogs',
@@ -7,13 +6,12 @@ import { BlogService } from '../../services/blog.service';
   styleUrls: ['./blogs.component.css']
 })
 export class BlogsComponent implements OnInit {
-  private title: string = "The Bootstrap Blog";
-  private description: string = "The official example template of creating a blog with Bootstrap.";
-  
-  constructor(private serviceBlog: BlogService) { }
+  private title: string = "The News Blog";
+  private description: string = "The official blog website created with Bootstrap";
+
+  constructor() { }
 
   ngOnInit() {
-    
-  }
 
+  }
 }

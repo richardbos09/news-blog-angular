@@ -1,1 +1,3 @@
-<app-blog-post></app-blog-post>
+<app-blog-post 
+    *ngFor="let blog of blogs"
+    [blog]="blog"></app-blog-post>

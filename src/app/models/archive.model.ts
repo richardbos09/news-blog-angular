@@ -6,7 +6,8 @@ export class Archive {
     private _year: number;
     private _blogs: Array<Blog>;
 
-	constructor(id: string, month: number, year: number, blogs: Array<Blog>) {
+    constructor(id: string, month: number, year: number, 
+                blogs: Array<Blog>) {
 		this._id = id;
 		this._month = month;
 		this._year = year;
