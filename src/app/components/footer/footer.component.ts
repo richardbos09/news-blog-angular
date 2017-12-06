@@ -6,8 +6,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-  private year: number = 2017;
-  private company: string = 'The News Blog';
+  public year: number = 2017;
+  public company: string = 'The News Blog';
   
   constructor() { }
 

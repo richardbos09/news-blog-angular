@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppComponent } from './app.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { HttpModule, Http } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
+import { RouterModule, Routes, Router } from '@angular/router';
 import { AppRoutingModule } from './app-routing.module';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -19,6 +19,7 @@ import { ArchiveItemComponent } from './components/archives/archive-list/archive
 import { BlogService } from './services/blog.service';
 import { AuthorService } from './services/author.service';
 import { ArchiveService } from './services/archive.service';
+import { BlogViewComponent } from './components/blogs/blog-view/blog-view.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ArchiveService } from './services/archive.service';
     BlogPostComponent,
     ArchiveListComponent,
     ArchiveItemComponent,
+    BlogViewComponent,
   ],
   imports: [
     BrowserModule,

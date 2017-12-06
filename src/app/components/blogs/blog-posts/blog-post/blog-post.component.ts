@@ -7,14 +7,15 @@ import * as Moment from 'moment';
   templateUrl: './blog-post.component.html',
   styleUrls: ['./blog-post.component.css']
 })
-export class BlogPostComponent implements OnInit {
+export class BlogPostComponent implements OnInit{
   @Input() private blog: Blog;
-  private title: string;
-  private month: string;
-  private day: string;
-  private year: string;
-  private name: string;
-  private text: string;
+  public title: string;
+  public month: string;
+  public day: string;
+  public year: string;
+  public name: string;
+  public summary: string;
+  public id: string;
 
   constructor() { }
 
@@ -24,7 +25,8 @@ export class BlogPostComponent implements OnInit {
     this.day = Moment(this.blog.timestamp).format("D");
     this.year = Moment(this.blog.timestamp).format("YYYY");
     this.name = this.blog.author.name;
-    this.text = this.blog.text;
+    this.summary = this.blog.summary;
+    this.id = this.blog.id;
   }
 
 }

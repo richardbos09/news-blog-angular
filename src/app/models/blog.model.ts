@@ -5,14 +5,16 @@ export class Blog {
 	private _title: string;
 	private _author: Author;
 	private _timestamp: Date;
+	private _summary: string;
 	private _text: string;
 
 	constructor(id: string, title: string, author: Author, 
-				timestamp: Date, text: string) {
+				timestamp: Date, summary: string, text: string) {
 		this._id = id;
 		this._title = title;
 		this._author = author;
 		this._timestamp = timestamp;
+		this._summary = summary;
 		this._text = text;
 	}
 
@@ -40,6 +42,14 @@ export class Blog {
 		this._author = value;
 	}
 
+	public get timestamp(): Date {
+		return this._timestamp;
+	}
+
+	public set timestamp(value: Date) {
+		this._timestamp = value;
+	}
+
 	public get text(): string {
 		return this._text;
 	}
@@ -48,12 +58,12 @@ export class Blog {
 		this._text = value;
 	}
 
-	public get timestamp(): Date {
-		return this._timestamp;
+	public get summary(): string {
+		return this._summary;
 	}
 
-	public set timestamp(value: Date) {
-		this._timestamp = value;
+	public set summary(value: string) {
+		this._summary = value;
 	}
 	
 }

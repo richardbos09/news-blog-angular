@@ -10,7 +10,9 @@ import { Subscription } from 'rxjs/Subscription';
   styleUrls: ['./blog-posts.component.css']
 })
 export class BlogPostsComponent implements OnInit, OnDestroy {
-  private blogs: Array<Blog>;
+  public title: string = "The News Blog";
+  public description: string = "The official blog website created with Bootstrap";
+  public blogs: Array<Blog>;
   private subscription: Subscription;
 
   constructor(private serviceBlog: BlogService) { }
