@@ -1,6 +1,7 @@
 import { Blog } from '../../../../models/blog.model';
 import { Component, OnInit, Input } from '@angular/core';
 import * as Moment from 'moment';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog-post',
@@ -16,7 +17,7 @@ export class BlogPostComponent implements OnInit{
   public summary: string;
   public id: string;
 
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
     this.title = this.blog.title;
@@ -28,4 +29,7 @@ export class BlogPostComponent implements OnInit{
     this.id = this.blog.id;
   }
 
+  public onBlogView(id: string): void {
+    this.router.navigate(['/blogs/' + id]);
+  }
 }

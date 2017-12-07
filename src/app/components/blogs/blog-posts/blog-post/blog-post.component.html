@@ -8,6 +8,6 @@
     {{ summary }}
   </p>
   <hr>
-  <a [routerLink]="id" class="btn btn-primary">Read More →</a>
+  <a (click)="onBlogView(id)" class="btn btn-primary">Read More →</a>
 </div>
 <!-- /.blog-post -->

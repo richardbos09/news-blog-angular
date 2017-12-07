@@ -28,4 +28,8 @@ export class MDBArchiveService extends ArchiveServiceBase {
   public getArchives(): Array<Archive> {
     return this._archives;
   }
+
+  public getArchive(id: string): Archive {
+    return this._archives.find(a => a.id === id);
+  }
 }

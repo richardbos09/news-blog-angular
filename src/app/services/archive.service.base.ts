@@ -9,5 +9,8 @@ export abstract class ArchiveServiceBase implements IArchiveService {
     getArchives(): Archive[] {
         throw new Error("Method not implemented.");
     }
+    getArchive(id: string): Archive {
+        throw new Error("Method not implemented.");
+    }
 
 }
