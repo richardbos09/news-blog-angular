@@ -1,13 +1,12 @@
-import { BlogService } from '../../../services/blog.service';
 import { Blog } from '../../../models/blog.model';
 import { Component, OnInit } from '@angular/core';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { Subscription } from 'rxjs/Subscription';
+import { BlogServiceBase } from '../../../services/blog.service.base';
 
 @Component({
   selector: 'app-blog-posts',
-  templateUrl: './blog-posts.component.html',
-  styleUrls: ['./blog-posts.component.css']
+  templateUrl: './blog-posts.component.html'
 })
 export class BlogPostsComponent implements OnInit, OnDestroy {
   public title: string = "The News Blog";
@@ -15,15 +14,16 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
   public blogs: Array<Blog>;
   private subscription: Subscription;
 
-  constructor(private serviceBlog: BlogService) { }
+  constructor(private serviceBlog: BlogServiceBase) { }
 
   ngOnInit() {
-    this.subscription = this.serviceBlog.observeBlogs.subscribe(
+    this.subscription = this.serviceBlog.getObserveBlogs().subscribe(
       (blogs: Array<Blog>) => {
-        this.blogs = blogs.sort((a, b) => {
-          if(a.timestamp.getTime() < b.timestamp.getTime()) {
-            return 1;
-          }
+        this.blogs = blogs.sort(
+          (a, b) => {
+            if(a.timestamp.getTime() < b.timestamp.getTime()) {
+              return 1;
+            }
         });
       }
     );

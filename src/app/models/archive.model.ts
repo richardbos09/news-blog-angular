@@ -2,15 +2,13 @@ import {Blog} from './blog.model';
 
 export class Archive {
     private _id: string;
-    private _month: number;
-    private _year: number;
+    private _datestamp: Date;
     private _blogs: Array<Blog>;
 
-    constructor(id: string, month: number, year: number, 
+    constructor(id: string, datestamp: Date, 
                 blogs: Array<Blog>) {
 		this._id = id;
-		this._month = month;
-		this._year = year;
+		this._datestamp = datestamp;
 		this._blogs = blogs;
     }
     
@@ -22,22 +20,14 @@ export class Archive {
         this._id = value;
     }
 
-    public get month(): number {
-        return this._month;
-    }
+	public get datestamp(): Date {
+		return this._datestamp;
+	}
 
-    public set month(value: number) {
-        this._month = value;
-    }
-
-    public get year(): number {
-        return this._year;
-    }
-
-    public set year(value: number) {
-        this._year = value;
-    }
-
+	public set datestamp(value: Date) {
+		this._datestamp = value;
+	}
+    
     public get blogs(): Array<Blog> {
         return this._blogs;
     }

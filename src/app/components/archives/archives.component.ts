@@ -1,14 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ArchiveService } from '../../services/archive.service';
 
 @Component({
   selector: 'app-archives',
-  templateUrl: './archives.component.html',
-  styleUrls: ['./archives.component.css']
+  templateUrl: './archives.component.html'
 })
 export class ArchivesComponent implements OnInit {
 
-  constructor(private serviceArchive: ArchiveService) { }
+  constructor() { }
 
   ngOnInit() {
   }

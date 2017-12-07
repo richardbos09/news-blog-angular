@@ -16,10 +16,13 @@ import { BlogPostsComponent } from './components/blogs/blog-posts/blog-posts.com
 import { BlogPostComponent } from './components/blogs/blog-posts/blog-post/blog-post.component';
 import { ArchiveListComponent } from './components/archives/archive-list/archive-list.component';
 import { ArchiveItemComponent } from './components/archives/archive-list/archive-item/archive-item.component';
-import { BlogService } from './services/blog.service';
-import { AuthorService } from './services/author.service';
-import { ArchiveService } from './services/archive.service';
 import { BlogViewComponent } from './components/blogs/blog-view/blog-view.component';
+import { AuthorServiceBase } from './services/author.service.base';
+import { MDBAuthorService } from './services/implementations/mdb.author.service';
+import { BlogServiceBase } from './services/blog.service.base';
+import { MDBBlogService } from './services/implementations/mdb.blog.service';
+import { ArchiveServiceBase } from './services/archive.service.base';
+import { MDBArchiveService } from './services/implementations/mdb.archive.service';
 
 @NgModule({
   declarations: [
@@ -44,9 +47,9 @@ import { BlogViewComponent } from './components/blogs/blog-view/blog-view.compon
   ],
   providers: [
     UserService,
-    ArchiveService,
-    BlogService,
-    AuthorService
+    { provide: ArchiveServiceBase, useClass: MDBArchiveService},
+    { provide: BlogServiceBase, useClass: MDBBlogService},
+    { provide: AuthorServiceBase, useClass: MDBAuthorService}
   ],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,5 @@
 <ol class="list-unstyled">
-  <app-archive-item></app-archive-item>
+  <app-archive-item
+    *ngFor="let archive of archives"
+    [archive]="archive"></app-archive-item>
 </ol>

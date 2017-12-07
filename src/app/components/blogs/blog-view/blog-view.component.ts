@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { BlogService } from '../../../services/blog.service';
 import { Blog } from '../../../models/blog.model';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as Moment from 'moment';
+import { BlogServiceBase } from '../../../services/blog.service.base';
 
 @Component({
   selector: 'app-blog-view',
-  templateUrl: './blog-view.component.html',
-  styleUrls: ['./blog-view.component.css']
+  templateUrl: './blog-view.component.html'
 })
 export class BlogViewComponent implements OnInit, OnDestroy {
   private blog: Blog;
@@ -23,7 +22,7 @@ export class BlogViewComponent implements OnInit, OnDestroy {
   public summary: string;
   public text: string;
 
-  constructor(private serviceBlog: BlogService,
+  constructor(private serviceBlog: BlogServiceBase,
               private aRoute: ActivatedRoute) { }
 
   ngOnInit() {
