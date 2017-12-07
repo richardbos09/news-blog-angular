@@ -5,5 +5,8 @@ export abstract class AuthorServiceBase implements IAuthorService {
     getAuthors(): Author[] {
         throw new Error("Method not implemented.");
     }
+    getAuthor(id: string): Author {
+        throw new Error("Method not implemented.");
+    }
     
 }

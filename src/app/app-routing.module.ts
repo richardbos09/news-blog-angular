@@ -8,8 +8,7 @@ import { ArchivesComponent } from './components/archives/archives.component';
 import { ArchiveListComponent } from './components/archives/archive-list/archive-list.component';
 
 const appRoutes: Routes = [
-  { path: '', redirectTo: ' ', pathMatch: 'full' },
-  { path: ' ', component: BlogPostsComponent },
+  { path: '', redirectTo: 'blogs', pathMatch: 'full' },
   { path: 'blogs', component: BlogsComponent, children: [
     { path: '', component: BlogPostsComponent },
     { path: ':id', component: BlogViewComponent },
@@ -18,7 +17,8 @@ const appRoutes: Routes = [
     { path: '', component: ArchiveListComponent },
     { path: ':id', component: BlogPostsComponent },
   ] },
-  { path: '**', redirectTo: ' ', pathMatch: 'full' }
+  { path: 'dashboard', component: DashboardComponent },
+  { path: '**', redirectTo: 'blogs', pathMatch: 'full' }
 ];
 
 @NgModule({

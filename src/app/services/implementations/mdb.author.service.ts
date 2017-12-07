@@ -17,4 +17,8 @@ export class MDBAuthorService extends AuthorServiceBase {
   public getAuthors(): Array<Author> {
     return this._authors;
   }
+
+  public getAuthor(id: string): Author {
+    return this._authors.find(a => a.id === id);
+  }
 }
