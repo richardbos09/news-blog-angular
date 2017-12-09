@@ -1,14 +1,21 @@
 <div class="header clearfix">
   <nav>
     <ul class="nav nav-pills pull-right">
-      <li role="presentation" [routerLinkActive]="['active']" >
+      <li role="presentation" 
+        [routerLinkActive]="['active']" 
+        [routerLinkActiveOptions]="{ exact: true }">
         <a routerLink="/blogs" >Home</a>
       </li>
       <li role="presentation" [routerLinkActive]="['active']">
         <a routerLink="/archives">Archives</a>
       </li>
-      <li role="presentation">
-        <a href="#">About</a>
+      <li role="presentation" class="dropdown" 
+        [routerLinkActive]="['active']" 
+        appDropdown>
+        <a class="cursor-pointer dropdown-toggle">More <span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+        <ul class="dropdown-menu">
+          <li [routerLinkActive]="['active']"><a routerLink="/blogs/form" class="cursor-pointer">Write a Blog</a></li>
+        </ul>
       </li>
     </ul>
   </nav>

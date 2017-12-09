@@ -7,3 +7,8 @@
     display: block;
     clear: both;
 }
+
+.nav > .dropdown > .dropdown-menu { 
+    left: auto;
+    right: 0;
+}

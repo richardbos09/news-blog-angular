@@ -23,6 +23,9 @@ import { BlogServiceBase } from './services/blog.service.base';
 import { MDBBlogService } from './services/implementations/mdb.blog.service';
 import { ArchiveServiceBase } from './services/archive.service.base';
 import { MDBArchiveService } from './services/implementations/mdb.archive.service';
+import { BlogSearchComponent } from './components/blogs/blog-search/blog-search.component';
+import { DropdownDirective } from './directives/dropdown.directive';
+import { BlogFormComponent } from './components/blogs/blog-form/blog-form.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,9 @@ import { MDBArchiveService } from './services/implementations/mdb.archive.servic
     ArchiveListComponent,
     ArchiveItemComponent,
     BlogViewComponent,
+    BlogSearchComponent,
+    DropdownDirective,
+    BlogFormComponent,
   ],
   imports: [
     BrowserModule,
