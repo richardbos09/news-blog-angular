@@ -1,3 +1,40 @@
-<p>
-  blog-form works!
-</p>
+<div class="form-header">
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="title">Title:</label>
+      <input type="text" class="form-control"
+        id="title" formControlName="title" [(ngModel)]="title">
+    </div>
+    <div class="form-group">
+      <label for="name">Author:</label>
+      <input type="text" class="form-control" id="name" 
+        list="authors" formControlName="name" [(ngModel)]="name">
+      <datalist id="authors">
+        <option value="Author 1"></option>
+        <option value="Author 2"></option>
+        <option value="Author 3"></option>
+      </datalist>
+    </div>
+    <div class="form-group">
+      <label for="summary">Summary:</label>
+      <textarea class="form-control" rows="3" id="summary"
+        formControlName="summary" [(ngModel)]="summary"></textarea>
+    </div>
+    <div class="form-group">
+      <label for="text">Text:</label>
+      <textarea class="form-control" rows="7" id="text"
+        formControlName="text" [(ngModel)]="text"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary" 
+      [disabled]="!form.valid">Submit</button>
+  </form>
+
+  <app-blog-view
+    [title]="title"
+    [name]="name"
+    [month]="month"
+    [day]="day"
+    [year]="year"
+    [summary]="summary"
+    [text]="text"></app-blog-view>
+</div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { Blog } from '../../../models/blog.model';
 import { ActivatedRoute, Params } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
@@ -14,30 +14,35 @@ export class BlogViewComponent implements OnInit, OnDestroy {
   private blog: Blog;
   private subscription: Subscription;
 
-  public title: string;
-  public month: string;
-  public day: string;
-  public year: string;
-  public name: string;
-  public summary: string;
-  public text: string;
+  @Input() public title: string;
+  @Input() public month: string;
+  @Input() public day: string;
+  @Input() public year: string;
+  @Input() public name: string;
+  @Input() public summary: string;
+  @Input() public text: string;
 
   constructor(private serviceBlog: BlogServiceBase,
               private aRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.title = "Preview";
+    this.name = "Author"
+
     this.subscription = this.aRoute.params.subscribe(
       (params: Params) => {
-        const id = params['id'];
-        this.blog = this.serviceBlog.getBlog(id);
-
-        this.title = this.blog.title;
-        this.month = Moment(this.blog.timestamp).format("MMMM");
-        this.day = Moment(this.blog.timestamp).format("D");
-        this.year = Moment(this.blog.timestamp).format("YYYY");
-        this.name = this.blog.author.name;
-        this.summary = this.blog.summary;
-        this.text = this.blog.text;
+        if(params['id']) {
+          const id = params['id'];
+          this.blog = this.serviceBlog.getBlog(id);
+  
+          this.title = this.blog.title;
+          this.month = Moment(this.blog.timestamp).format("MMMM");
+          this.day = Moment(this.blog.timestamp).format("D");
+          this.year = Moment(this.blog.timestamp).format("YYYY");
+          this.name = this.blog.author.name;
+          this.summary = this.blog.summary;
+          this.text = this.blog.text;
+        }
       }
     );
   }
