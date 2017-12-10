@@ -1,6 +1,8 @@
 import { Author } from '../models/author.model';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 
 export interface IAuthorService {
-  getAuthors(): Array<Author>;
-  getAuthor(id: string): Author;
+  getObserveAuthors(): BehaviorSubject<Author[]>;
+  getAuthors(): Promise<Author[]>;
+  getAuthor(id: string): Promise<Author>;
 }

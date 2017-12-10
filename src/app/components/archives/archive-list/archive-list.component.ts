@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Archive } from '../../../models/archive.model';
 import { Subscription } from 'rxjs/Subscription';
-import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import { ArchiveServiceBase } from '../../../services/archive.service.base';
 
 @Component({
@@ -20,7 +19,7 @@ export class ArchiveListComponent implements OnInit, OnDestroy {
         (archives: Array<Archive>) => {
           this.archives = archives.sort(
             (a, b) => {
-              if(a.datestamp.getTime() < b.datestamp.getTime()) {
+              if(new Date(a.datestamp).getTime() < new Date(b.datestamp).getTime()) {
                 return 1;
               }
             }

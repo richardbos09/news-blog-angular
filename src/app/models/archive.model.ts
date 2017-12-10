@@ -1,7 +1,7 @@
 import {Blog} from './blog.model';
 
 export class Archive {
-    private _id: string;
+    protected _id: string;
     private _datestamp: Date;
     private _blogs: Array<Blog>;
 
@@ -9,7 +9,7 @@ export class Archive {
                 blogs: Array<Blog>) {
 		this._id = id;
 		this._datestamp = datestamp;
-		this._blogs = blogs;
+        this._blogs = blogs;
     }
     
     public get id(): string {

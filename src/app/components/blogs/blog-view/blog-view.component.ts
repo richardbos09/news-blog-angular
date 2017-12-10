@@ -5,6 +5,8 @@ import { Subscription } from 'rxjs/Subscription';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as Moment from 'moment';
 import { BlogServiceBase } from '../../../services/blog.service.base';
+import { AuthorServiceBase } from '../../../services/author.service.base';
+import { Author } from '../../../models/author.model';
 
 @Component({
   selector: 'app-blog-view',
@@ -23,6 +25,7 @@ export class BlogViewComponent implements OnInit, OnDestroy {
   @Input() public text: string;
 
   constructor(private serviceBlog: BlogServiceBase,
+              private serviceAuthor: AuthorServiceBase,
               private aRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -33,15 +36,22 @@ export class BlogViewComponent implements OnInit, OnDestroy {
       (params: Params) => {
         if(params['id']) {
           const id = params['id'];
-          this.blog = this.serviceBlog.getBlog(id);
-  
-          this.title = this.blog.title;
-          this.month = Moment(this.blog.timestamp).format("MMMM");
-          this.day = Moment(this.blog.timestamp).format("D");
-          this.year = Moment(this.blog.timestamp).format("YYYY");
-          this.name = this.blog.author.name;
-          this.summary = this.blog.summary;
-          this.text = this.blog.text;
+          this.serviceBlog.getBlog(id).then(
+            (blog: Blog) => {
+              this.blog = blog
+              this.title = this.blog.title;
+              this.month = Moment(this.blog.timestamp).format("MMMM");
+              this.day = Moment(this.blog.timestamp).format("D");
+              this.year = Moment(this.blog.timestamp).format("YYYY");
+              this.serviceAuthor.getAuthor(this.blog.author_id).then(
+                (author: Author) => {
+                  this.name = author.name;
+                }
+              );
+              this.summary = this.blog.summary;
+              this.text = this.blog.text;
+            }
+          );
         }
       }
     );

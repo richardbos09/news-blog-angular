@@ -6,13 +6,13 @@ export abstract class BlogServiceBase implements IBlogService{
     getObserveBlogs(): BehaviorSubject<Blog[]> {
         throw new Error("Method not implemented.");
     }
-    getBlogs(): Blog[] {
+    getBlogs(): Promise<Blog[]> {
         throw new Error("Method not implemented.");
     }
     getBlogsYearAndMonth(year: number, month: number): Blog[] {
         throw new Error("Method not implemented.");
     }
-    getBlog(id: string): Blog {
+    getBlog(id: string): Promise<Blog> {
         throw new Error("Method not implemented.");
     }
 

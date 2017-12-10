@@ -6,10 +6,10 @@ export abstract class ArchiveServiceBase implements IArchiveService {
     getObserveArchives(): BehaviorSubject<Archive[]> {
         throw new Error("Method not implemented.");
     }
-    getArchives(): Archive[] {
+    getArchives(): Promise<Archive[]> {
         throw new Error("Method not implemented.");
     }
-    getArchive(id: string): Archive {
+    getArchive(id: string): Promise<Archive> {
         throw new Error("Method not implemented.");
     }
 

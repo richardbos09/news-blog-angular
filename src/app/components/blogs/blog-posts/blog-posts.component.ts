@@ -5,6 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { BlogServiceBase } from '../../../services/blog.service.base';
 import { ActivatedRoute, Params } from '@angular/router';
 import { ArchiveServiceBase } from '../../../services/archive.service.base';
+import { Archive } from '../../../models/archive.model';
 
 @Component({
   selector: 'app-blog-posts',
@@ -16,7 +17,7 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
   public blogs: Array<Blog>;
   private subs: Array<Subscription> = [
     new Subscription(),
-    new Subscription()
+    new Subscription(),
   ];
 
   constructor(private serviceArchive: ArchiveServiceBase,
@@ -25,10 +26,10 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.subs[0] = this.serviceBlog.getObserveBlogs().subscribe(
-      (blogs: Array<Blog>) => {
+      (blogs: Blog[]) => {
         this.blogs = blogs.sort(
           (a, b) => {
-            if(a.timestamp.getTime() < b.timestamp.getTime()) {
+            if(new Date(a.timestamp).getTime() < new Date(b.timestamp).getTime()) {
               return 1;
             }
         });
@@ -38,13 +39,18 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
     this.subs[1] = this.aRoute.params.subscribe(
       (params: Params) => {
         if(params['id']) {
-          const archive = this.serviceArchive.getArchive(params['id']);
-          this.blogs = archive.blogs.sort(
-            (a, b) => {
-              if(a.timestamp.getTime() < b.timestamp.getTime()) {
-                return 1;
-              }
-          });
+          const archive = this.serviceArchive.getArchive(params['id']).then(
+            (archive: Archive) => {
+              const year = new Date(archive.datestamp).getFullYear();
+              const month = new Date(archive.datestamp).getMonth();
+              this.blogs = this.serviceBlog.getBlogsYearAndMonth(year, month).sort(
+                (a, b) => {
+                  if(new Date(a.timestamp).getTime() < new Date(b.timestamp).getTime()) {
+                    return 1;
+                  }
+              });
+            }
+          );
         }
       }
     );
