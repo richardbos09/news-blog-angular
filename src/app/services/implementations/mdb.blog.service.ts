@@ -87,19 +87,25 @@ export class MDBBlogService extends BlogServiceBase {
 		});
 	}
 
-	public postBlog(form: any): void {
+	public postBlog(form: any): Promise<Blog> {
 		const author = this.serviceAuthor.getAuthorName(form.name);
 		const blog = new Blog(null, form.title, author, 
 			form.timestamp, form.summary, form.text);
-		this.http.post(this.url, {
+		return this.http.post(this.url, {
 			headers: this.headers,
 			data: blog
 		}).toPromise().then((response) => {
+			const b = response.json();
+			const blog = new Blog(b._id, b._title, b._author, 
+				b._timestamp, b._summary, b._text);
 			console.log('POST: ' + this.url);
-			console.log(response);
+			console.log(blog);
+			this.getBlogs();
+			this.serviceAuthor.getAuthors();
+			return blog;
 		}).catch((error) => {
-			return null;
-		})
+			return this.handleError(error);
+		});
 	}
 
 	private handleError(error: any): Promise<any> {

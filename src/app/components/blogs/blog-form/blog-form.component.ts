@@ -5,6 +5,8 @@ import { Author } from '../../../models/author.model';
 import { AuthorServiceBase } from '../../../services/author.service.base';
 import { Subscription } from 'rxjs/Subscription';
 import { BlogServiceBase } from '../../../services/blog.service.base';
+import { Blog } from '../../../models/blog.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-blog-form',
@@ -24,7 +26,8 @@ export class BlogFormComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   
   constructor(private serviceAuthor: AuthorServiceBase,
-              private serviceBlog: BlogServiceBase) { }
+              private serviceBlog: BlogServiceBase,
+              private router: Router) { }
 
   ngOnInit() {
     this.month = Moment(new Date()).format("MMMM");
@@ -51,7 +54,11 @@ export class BlogFormComponent implements OnInit, OnDestroy {
   }
 
   public submitForm(): void {
-    this.serviceBlog.postBlog(this.form.value);
+    this.serviceBlog.postBlog(this.form.value).then(
+      (blog: Blog) => {
+        this.router.navigate(['/blogs/' + blog.id]);
+      }
+    );
   }
 
   ngOnDestroy(): void {
