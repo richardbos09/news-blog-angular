@@ -25,6 +25,7 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
               private aRoute: ActivatedRoute) { }
 
   ngOnInit() {
+    this.serviceBlog.getBlogs();
     this.subs[0] = this.serviceBlog.getObserveBlogs().subscribe(
       (blogs: Blog[]) => {
         this.blogs = blogs.sort(

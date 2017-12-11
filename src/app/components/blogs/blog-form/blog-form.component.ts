@@ -30,9 +30,6 @@ export class BlogFormComponent implements OnInit, OnDestroy {
               private router: Router) { }
 
   ngOnInit() {
-    this.month = Moment(new Date()).format("MMMM");
-    this.day = Moment(new Date()).format("D");
-    this.year = Moment(new Date()).format("YYYY");
     this.timestamp = new Date();
     this.subscription = this.serviceAuthor.getObserveAuthors().subscribe(
       (authors: Author[]) => {

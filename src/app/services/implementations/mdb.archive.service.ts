@@ -25,7 +25,7 @@ export class MDBArchiveService extends ArchiveServiceBase {
   constructor(private serviceBlog: BlogServiceBase,
               private http: Http) {
     super();
-    this.getArchives();
+    //this.getArchives();
   }
 
 	public getObserveArchives(): BehaviorSubject<Archive[]>  {

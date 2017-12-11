@@ -7,6 +7,7 @@ import { BlogServiceBase } from '../blog.service.base';
 import { environment } from '../../../environments/environment';
 import { Http, Headers, URLSearchParams } from '@angular/http';
 import { Author } from '../../models/author.model';
+import { ArchiveServiceBase } from '../archive.service.base';
 
 @Injectable()
 export class MDBBlogService extends BlogServiceBase {
@@ -39,7 +40,7 @@ export class MDBBlogService extends BlogServiceBase {
 	constructor(private serviceAuthor: AuthorServiceBase,
 				private http: Http) {
 		super();
-		this.getBlogs();
+		//this.getBlogs();
 	}
 
 	public getObserveBlogs(): BehaviorSubject<Blog[]> {
@@ -100,8 +101,6 @@ export class MDBBlogService extends BlogServiceBase {
 				b._timestamp, b._summary, b._text);
 			console.log('POST: ' + this.url);
 			console.log(blog);
-			this.getBlogs();
-			this.serviceAuthor.getAuthors();
 			return blog;
 		}).catch((error) => {
 			return this.handleError(error);

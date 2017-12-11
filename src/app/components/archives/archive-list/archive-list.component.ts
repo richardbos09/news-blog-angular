@@ -14,6 +14,7 @@ export class ArchiveListComponent implements OnInit, OnDestroy {
   constructor(private serviceArchive: ArchiveServiceBase) { }
 
   ngOnInit() {
+    this.serviceArchive.getArchives();
     this.subscription = this.serviceArchive.getObserveArchives().
       subscribe(
         (archives: Array<Archive>) => {

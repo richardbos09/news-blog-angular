@@ -29,8 +29,11 @@ export class BlogViewComponent implements OnInit, OnDestroy {
               private aRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.title = "Preview";
-    this.name = "Author"
+    this.title = "Title";
+    this.month = Moment(new Date()).format("MMMM");
+    this.day = Moment(new Date()).format("D");
+    this.year = Moment(new Date()).format("YYYY");
+    this.name = "Author";
 
     this.subscription = this.aRoute.params.subscribe(
       (params: Params) => {
@@ -47,7 +50,9 @@ export class BlogViewComponent implements OnInit, OnDestroy {
                 (author: Author) => {
                   this.name = author.name;
                 }
-              );
+              ).catch((error) => {
+                console.log("test");
+              });
               this.summary = this.blog.summary;
               this.text = this.blog.text;
             }

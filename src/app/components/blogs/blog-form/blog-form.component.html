@@ -7,7 +7,7 @@
     </div>
     <div class="form-group">
       <label for="name">Author:</label>
-      <input type="text" class="form-control" id="name" 
+      <input type="text" class="form-control"
         list="authors" formControlName="name" [(ngModel)]="name">
       <datalist id="authors">
         <option *ngFor="let author of authors"
@@ -36,9 +36,6 @@
   <app-blog-view
     [title]="title"
     [name]="name"
-    [month]="month"
-    [day]="day"
-    [year]="year"
     [summary]="summary"
     [text]="text"></app-blog-view>
 </div>

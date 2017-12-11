@@ -54,9 +54,9 @@ import { BlogFormComponent } from './components/blogs/blog-form/blog-form.compon
   ],
   providers: [
     UserService,
-    { provide: ArchiveServiceBase, useClass: MDBArchiveService},
-    { provide: BlogServiceBase, useClass: MDBBlogService},
-    { provide: AuthorServiceBase, useClass: MDBAuthorService}
+    { provide: ArchiveServiceBase, useClass: MDBArchiveService },
+    { provide: BlogServiceBase, useClass: MDBBlogService },
+    { provide: AuthorServiceBase, useClass: MDBAuthorService }
   ],
   bootstrap: [AppComponent]
 })
