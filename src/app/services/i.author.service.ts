@@ -5,4 +5,5 @@ export interface IAuthorService {
   getObserveAuthors(): BehaviorSubject<Author[]>;
   getAuthors(): Promise<Author[]>;
   getAuthor(id: string): Promise<Author>;
+  getAuthorName(name: string): Author;
 }

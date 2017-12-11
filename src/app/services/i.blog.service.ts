@@ -6,4 +6,5 @@ export interface IBlogService {
 	getBlogs(): Promise<Blog[]>;
 	getBlogsYearAndMonth(year: number, month: number): Blog[];
 	getBlog(id: string): Promise<Blog>;
+	postBlog(form: any): void;
 }

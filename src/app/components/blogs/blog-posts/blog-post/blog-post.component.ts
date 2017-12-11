@@ -27,7 +27,7 @@ export class BlogPostComponent implements OnInit{
     this.month = Moment(this.blog.timestamp).format("MMMM");
     this.day = Moment(this.blog.timestamp).format("D");
     this.year = Moment(this.blog.timestamp).format("YYYY");
-    const author = this.serviceAuthor.getAuthor(this.blog.author_id).then(
+    const author = this.serviceAuthor.getAuthor(this.blog.author.toString()).then(
       (author: Author) => {
         this.name = author.name;
       } 

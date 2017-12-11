@@ -12,5 +12,8 @@ export abstract class AuthorServiceBase implements IAuthorService {
     getAuthor(id: string): Promise<Author> {
         throw new Error("Method not implemented.");
     }
+    getAuthorName(name: string): Author {
+        throw new Error("Method not implemented.");
+    }
     
 }

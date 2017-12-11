@@ -6,6 +6,7 @@ import * as Moment from 'moment';
 import { BlogServiceBase } from '../blog.service.base';
 import { environment } from '../../../environments/environment';
 import { Http, Headers, URLSearchParams } from '@angular/http';
+import { Author } from '../../models/author.model';
 
 @Injectable()
 export class MDBBlogService extends BlogServiceBase {
@@ -52,8 +53,8 @@ export class MDBBlogService extends BlogServiceBase {
 			const blogs = response.json();
 			this._blogs = [];
 			blogs.forEach((b) => {
-				const blog = new Blog(b._id, b.title, b.author_id, 
-					b.timestamp, b.summary, b.text);
+				const blog = new Blog(b._id, b._title, b._author, 
+					b._timestamp, b._summary, b._text);
 				this._blogs.push(blog);
 			});
 			console.log('GET: ' + this.url);
@@ -76,14 +77,29 @@ export class MDBBlogService extends BlogServiceBase {
 			headers: this.headers
 		}).toPromise().then((response) => {
 			const b = response.json();
-			const blog = new Blog(b._id, b.title, b.author_id, b.timestamp, 
-				b.summary, b.text);
+			const blog = new Blog(b._id, b._title, b._author, b._timestamp, 
+				b._summary, b._text);
 			console.log('GET ' + this.url + "/" + id);
 			console.log(blog);
 			return blog;
 		}).catch((error) => {
 			return this.handleError(error);
 		});
+	}
+
+	public postBlog(form: any): void {
+		const author = this.serviceAuthor.getAuthorName(form.name);
+		const blog = new Blog(null, form.title, author, 
+			form.timestamp, form.summary, form.text);
+		this.http.post(this.url, {
+			headers: this.headers,
+			data: blog
+		}).toPromise().then((response) => {
+			console.log('POST: ' + this.url);
+			console.log(response);
+		}).catch((error) => {
+			return null;
+		})
 	}
 
 	private handleError(error: any): Promise<any> {

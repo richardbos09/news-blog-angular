@@ -23,7 +23,7 @@ export class MDBAuthorService extends AuthorServiceBase {
     this.getAuthors();
   }
 
-	public get observeAuthors(): BehaviorSubject<Author[]>  {
+	public getObserveAuthors(): BehaviorSubject<Author[]>  {
 		return this._observeAuthors;
 	}
 
@@ -34,7 +34,7 @@ export class MDBAuthorService extends AuthorServiceBase {
       const authors = response.json();
       this._authors = [];
       authors.forEach((a) => {
-        const author = new Author(a._id, a.name);
+        const author = new Author(a._id, a._name);
         this._authors.push(author);
       });
       console.log('GET: ' + this.url);
@@ -49,13 +49,23 @@ export class MDBAuthorService extends AuthorServiceBase {
     return this.http.get(this.url + "/" + id, {
       headers: this.headers
     }).toPromise().then((response) => {
-      const author = response.json() as Author;
+      const a = response.json();
+      const author = new Author(a._id, a._name);
       console.log('GET: ' + this.url + "/" + id);
       console.log(author);
       return author;
     }).catch((error) => {
       return this.handleError(error);
     });
+  }
+
+  public getAuthorName(name: string): Author {
+    const author = this._authors.find(a => a.name === name);
+    if(author) {
+      return author;
+    } else {
+      return new Author(null, name);
+    }
   }
 
   private handleError(error: any): Promise<any> {

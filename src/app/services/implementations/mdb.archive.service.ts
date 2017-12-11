@@ -39,7 +39,7 @@ export class MDBArchiveService extends ArchiveServiceBase {
       const archives = response.json();
       this._archives = [];
       archives.forEach((a) => {
-        const archive = new Archive(a._id, a.datestamp, a.blogs);
+        const archive = new Archive(a._id, a._datestamp, a._blogs);
         this._archives.push(archive);
       });
       console.log('GET: ' + this.url);
@@ -55,7 +55,7 @@ export class MDBArchiveService extends ArchiveServiceBase {
       headers: this.headers
     }).toPromise().then((response) => {
       const a = response.json();
-      const archive = new Archive(a._id, a.datestamp, a.blogs);
+      const archive = new Archive(a._id, a._datestamp, a._blogs);
       console.log('GET: ' + this.url + "/" + id);
       console.log(archive);
       return archive;

@@ -3,16 +3,16 @@ import { Author } from "./author.model";
 export class Blog {
 	private _id: string;
 	private _title: string;
-	private _author_id: string;
+	private _author: Author;
 	private _timestamp: Date;
 	private _summary: string;
 	private _text: string;
 
-	constructor(id: string, title: string, author_id: string, 
+	constructor(id: string, title: string, author: Author, 
 				timestamp: Date, summary: string, text: string) {
 		this._id = id;
 		this._title = title;
-		this._author_id = author_id;
+		this._author = author;
 		this._timestamp = timestamp;
 		this._summary = summary;
 		this._text = text;
@@ -34,12 +34,12 @@ export class Blog {
 		this._title = value;
 	}
 
-	public get author_id(): string {
-		return this._author_id;
+	public get author(): Author {
+		return this._author;
 	}
 
-	public set author_id(value: string) {
-		this._author_id = value;
+	public set author(value: Author) {
+		this._author = value;
 	}
 	
 	public get timestamp(): Date {
