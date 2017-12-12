@@ -26,6 +26,7 @@ import { MDBArchiveService } from './services/implementations/mdb.archive.servic
 import { BlogSearchComponent } from './components/blogs/blog-search/blog-search.component';
 import { DropdownDirective } from './directives/dropdown.directive';
 import { BlogFormComponent } from './components/blogs/blog-form/blog-form.component';
+import { NGDBAuthorService } from './services/implementations/ngdb.author.service';
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import { BlogFormComponent } from './components/blogs/blog-form/blog-form.compon
     UserService,
     { provide: ArchiveServiceBase, useClass: MDBArchiveService },
     { provide: BlogServiceBase, useClass: MDBBlogService },
-    { provide: AuthorServiceBase, useClass: MDBAuthorService }
+    { provide: AuthorServiceBase, useClass: MDBAuthorService },
+    // { provide: AuthorServiceBase, useClass: NGDBAuthorService},
   ],
   bootstrap: [AppComponent]
 })

@@ -9,7 +9,7 @@ import { User } from '../models/user.model';
 @Injectable()
 export class UserService {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private serverUrl = environment.serverUrl + '/users'; // URL to web api
+  private serverUrl = environment.mongoUrl + '/users'; // URL to web api
   private users: User[] = [];
 
   constructor(private http: Http) { }

@@ -9,7 +9,7 @@ import { Http, Headers, URLSearchParams } from '@angular/http';
 @Injectable()
 export class MDBArchiveService extends ArchiveServiceBase {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private url = environment.serverUrl + '/archives';
+  private url = environment.mongoUrl + '/archives';
   private _archives: Archive[] = []
   // private _archives: Array<Archive> = [
   //   new Archive('1', new Date(2017, 11),

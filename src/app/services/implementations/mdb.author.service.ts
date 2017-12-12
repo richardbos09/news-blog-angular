@@ -8,7 +8,7 @@ import { BehaviorSubject } from 'rxjs/BehaviorSubject';
 @Injectable()
 export class MDBAuthorService extends AuthorServiceBase {
   private headers = new Headers({ 'Content-Type': 'application/json' });
-  private url = environment.serverUrl + '/authors';
+  private url = environment.mongoUrl + '/authors';
   private _authors: Author[];
   // private _authors: Array<Author> = [
   //   new Author('1', 'Richard'),

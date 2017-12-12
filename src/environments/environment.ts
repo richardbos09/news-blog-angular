@@ -5,5 +5,6 @@
 
 export const environment = {
   production: false,
-  serverUrl: 'http://localhost:3000/api/v1'
+  mongoUrl: 'http://localhost:3000/api/v1',
+  neo4jUrl: 'http://localhost:3000/api/neo4j/v1'
 };

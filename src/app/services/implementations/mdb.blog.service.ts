@@ -12,7 +12,7 @@ import { ArchiveServiceBase } from '../archive.service.base';
 @Injectable()
 export class MDBBlogService extends BlogServiceBase {
 	private headers = new Headers({ 'Content-Type': 'application/json' });
-	private url = environment.serverUrl + '/blogs';
+	private url = environment.mongoUrl + '/blogs';
 	private _blogs: Blog[] = [];
 	// private _blogs: Array<Blog> = [
 	// 	new Blog('1', 'Blog Post 1', this.serviceAuthor.getAuthor('1'),
