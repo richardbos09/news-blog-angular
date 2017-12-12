@@ -6,13 +6,14 @@ import { AuthorServiceBase } from '../../../services/author.service.base';
 import { Subscription } from 'rxjs/Subscription';
 import { BlogServiceBase } from '../../../services/blog.service.base';
 import { Blog } from '../../../models/blog.model';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute, Params } from '@angular/router';
 
 @Component({
   selector: 'app-blog-form',
   templateUrl: './blog-form.component.html'
 })
 export class BlogFormComponent implements OnInit, OnDestroy {
+  private id: string;
   public title: string;
   public month: string;
   public day: string;
@@ -20,20 +21,48 @@ export class BlogFormComponent implements OnInit, OnDestroy {
   public name: string;
   public summary: string;
   public text: string;
+  public preview: boolean;
   public timestamp: Date;
   public form: FormGroup;
   public authors: Author[];
-  private subscription: Subscription;
+  private update: boolean;
+  private subs: Array<Subscription> = [
+    new Subscription(),
+    new Subscription(),
+  ];
   
   constructor(private serviceAuthor: AuthorServiceBase,
               private serviceBlog: BlogServiceBase,
+              private aRoute: ActivatedRoute,
               private router: Router) { }
 
   ngOnInit() {
+    this.preview = true;
     this.timestamp = new Date();
-    this.subscription = this.serviceAuthor.getObserveAuthors().subscribe(
+    this.subs[0] = this.serviceAuthor.getObserveAuthors().subscribe(
       (authors: Author[]) => {
         this.authors = authors;
+      }
+    );
+
+    this.subs[1] = this.aRoute.params.subscribe(
+      (params: Params) => {
+        if(params['id']) {
+          this.update = true;
+          this.id = params['id'];
+          const blog = this.serviceBlog.getBlog(this.id).then(
+            (blog: Blog) => {
+              this.title = blog.title;
+              const author = this.serviceAuthor.getAuthor(blog.author.toString()).then(
+                (author: Author) => {
+                  this.name = author.name;
+                } 
+              );
+              this.summary = blog.summary;
+              this.text = blog.text;
+            }
+          );
+        }
       }
     );
 
@@ -51,14 +80,23 @@ export class BlogFormComponent implements OnInit, OnDestroy {
   }
 
   public submitForm(): void {
-    this.serviceBlog.postBlog(this.form.value).then(
-      (blog: Blog) => {
-        this.router.navigate(['/blogs/' + blog.id]);
-      }
-    );
+    if(!this.update) {
+      this.serviceBlog.addBlog(this.form.value).then(
+        (blog: Blog) => {
+          this.router.navigate(['/blogs/' + blog.id]);
+        }
+      );
+    } else {
+      this.serviceBlog.updateBlog(this.form.value, this.id).then(
+        (blog: Blog) => {
+          this.router.navigate(['/blogs/' + blog.id]);
+        }
+      );
+    }
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subs[0].unsubscribe();
+    this.subs[1].unsubscribe();
   }
 }

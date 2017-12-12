@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Blog } from '../../../models/blog.model';
-import { ActivatedRoute, Params } from '@angular/router';
+import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { OnDestroy } from '@angular/core/src/metadata/lifecycle_hooks';
 import * as Moment from 'moment';
@@ -13,6 +13,7 @@ import { Author } from '../../../models/author.model';
   templateUrl: './blog-view.component.html'
 })
 export class BlogViewComponent implements OnInit, OnDestroy {
+  public id: string;
   private blog: Blog;
   private subscription: Subscription;
 
@@ -23,10 +24,12 @@ export class BlogViewComponent implements OnInit, OnDestroy {
   @Input() public name: string;
   @Input() public summary: string;
   @Input() public text: string;
+  @Input() public preview: boolean;
 
   constructor(private serviceBlog: BlogServiceBase,
               private serviceAuthor: AuthorServiceBase,
-              private aRoute: ActivatedRoute) { }
+              private aRoute: ActivatedRoute,
+              private router: Router) { }
 
   ngOnInit() {
     this.title = "Title";
@@ -38,8 +41,8 @@ export class BlogViewComponent implements OnInit, OnDestroy {
     this.subscription = this.aRoute.params.subscribe(
       (params: Params) => {
         if(params['id']) {
-          const id = params['id'];
-          this.serviceBlog.getBlog(id).then(
+          this.id = params['id'];
+          this.serviceBlog.getBlog(this.id).then(
             (blog: Blog) => {
               this.blog = blog
               this.title = this.blog.title;
@@ -50,9 +53,7 @@ export class BlogViewComponent implements OnInit, OnDestroy {
                 (author: Author) => {
                   this.name = author.name;
                 }
-              ).catch((error) => {
-                console.log("test");
-              });
+              );
               this.summary = this.blog.summary;
               this.text = this.blog.text;
             }
@@ -60,6 +61,10 @@ export class BlogViewComponent implements OnInit, OnDestroy {
         }
       }
     );
+  }
+
+  public updateBlog(id: string): void {
+    this.router.navigate(['/blogs/form/' + id]);
   }
 
   ngOnDestroy(): void {

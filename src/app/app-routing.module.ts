@@ -13,6 +13,7 @@ const appRoutes: Routes = [
   { path: 'blogs', component: BlogsComponent, children: [
     { path: '', component: BlogPostsComponent },
     { path: 'form', component: BlogFormComponent },
+    { path: 'form/:id', component: BlogFormComponent },
     { path: ':id', component: BlogViewComponent },
   ] },
   { path: 'archives', component: ArchivesComponent, children: [

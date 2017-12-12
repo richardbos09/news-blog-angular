@@ -40,7 +40,8 @@ export class BlogPostsComponent implements OnInit, OnDestroy {
     this.subs[1] = this.aRoute.params.subscribe(
       (params: Params) => {
         if(params['id']) {
-          const archive = this.serviceArchive.getArchive(params['id']).then(
+          const id = params['id'];
+          const archive = this.serviceArchive.getArchive(id).then(
             (archive: Archive) => {
               const year = new Date(archive.datestamp).getFullYear();
               const month = new Date(archive.datestamp).getMonth();

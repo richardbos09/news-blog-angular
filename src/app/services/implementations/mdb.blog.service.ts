@@ -80,7 +80,7 @@ export class MDBBlogService extends BlogServiceBase {
 			const b = response.json();
 			const blog = new Blog(b._id, b._title, b._author, b._timestamp, 
 				b._summary, b._text);
-			console.log('GET ' + this.url + "/" + id);
+			console.log('GET: ' + this.url + "/" + id);
 			console.log(blog);
 			return blog;
 		}).catch((error) => {
@@ -88,7 +88,7 @@ export class MDBBlogService extends BlogServiceBase {
 		});
 	}
 
-	public postBlog(form: any): Promise<Blog> {
+	public addBlog(form: any): Promise<Blog> {
 		const author = this.serviceAuthor.getAuthorName(form.name);
 		const blog = new Blog(null, form.title, author, 
 			form.timestamp, form.summary, form.text);
@@ -100,6 +100,25 @@ export class MDBBlogService extends BlogServiceBase {
 			const blog = new Blog(b._id, b._title, b._author, 
 				b._timestamp, b._summary, b._text);
 			console.log('POST: ' + this.url);
+			console.log(blog);
+			return blog;
+		}).catch((error) => {
+			return this.handleError(error);
+		});
+	}
+
+	public updateBlog(form: any, id: string): Promise<Blog> {
+		const author = this.serviceAuthor.getAuthorName(form.name);
+		const blog = new Blog(id, form.title, author, 
+			form.timestamp, form.summary, form.text);
+		return this.http.put(this.url + "/" + id, {
+			headers: this.headers,
+			data: blog
+		}).toPromise().then((response) => {
+			const b = response.json();
+			const blog = new Blog(b._id, b._title, b._author, 
+				b._timestamp, b._summary, b._text);
+			console.log('PUT: ' + this.url + "/" + id);
 			console.log(blog);
 			return blog;
 		}).catch((error) => {

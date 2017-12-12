@@ -15,7 +15,10 @@ export abstract class BlogServiceBase implements IBlogService{
     getBlog(id: string): Promise<Blog> {
         throw new Error("Method not implemented.");
     }
-    postBlog(form: any): Promise<Blog> {
+    addBlog(form: any): Promise<Blog> {
+        throw new Error("Method not implemented.");
+    }
+    updateBlog(form: any, id: string): Promise<Blog> {
         throw new Error("Method not implemented.");
     }
 }
