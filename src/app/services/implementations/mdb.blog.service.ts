@@ -126,6 +126,21 @@ export class MDBBlogService extends BlogServiceBase {
 		});
 	}
 
+	public deleteBlog(id: string): Promise<Blog> {
+		return this.http.delete(this.url + "/" + id, {
+			headers: this.headers
+		}).toPromise().then((response) => {
+			const b = response.json();
+			const blog = new Blog(b._id, b._title, b._author,
+				b._timestamp, b._summary, b._text);
+			console.log('DELETE: ' + this.url + "/" + id);
+			console.log(blog);
+			return blog;
+		}).catch((error) => {
+			return this.handleError(error);
+		})
+	}
+
 	private handleError(error: any): Promise<any> {
 		console.log('handleError');
 		return Promise.reject(error.message || error);

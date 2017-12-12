@@ -67,6 +67,14 @@ export class BlogViewComponent implements OnInit, OnDestroy {
     this.router.navigate(['/blogs/form/' + id]);
   }
 
+  public deleteBlog(id: string): void {
+    this.serviceBlog.deleteBlog(id).then(
+      (blog: Blog) => {
+        this.router.navigate(['/blogs']);
+      }
+    );
+  }
+
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }

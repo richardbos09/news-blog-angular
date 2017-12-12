@@ -15,7 +15,8 @@
   <div class="blog-post-crud" *ngIf="!preview">
     <button type="button" class="btn btn-primary" 
       (click)="updateBlog(id)">Update</button>
-    <button type="button" class="btn btn-danger">Delete</button>
+    <button type="button" class="btn btn-danger"
+      (click)="deleteBlog(id)">Delete</button>
   </div>
 </div>
 <!-- /.blog-post -->
