@@ -39,6 +39,8 @@ export class BlogFormComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.preview = true;
     this.timestamp = new Date();
+
+    this.serviceAuthor.getAuthors();
     this.subs[0] = this.serviceAuthor.getObserveAuthors().subscribe(
       (authors: Author[]) => {
         this.authors = authors;

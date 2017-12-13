@@ -23,14 +23,48 @@ export class NGDBAuthorService extends AuthorServiceBase{
   }
   
   public getAuthors(): Promise<Author[]> {
-    throw new Error("Method not implemented.");
+    return this.http.get(this.url, {
+      headers: this.headers
+    }).toPromise().then((response) => {
+      const authors = response.json();
+      this._authors = [];
+      authors.forEach((a) => {
+        const author = new Author(a._id, a._name);
+        this._authors.push(author);
+      });
+      console.log('GET: ' + this.url);
+      console.log(this._authors);
+      return this._observeAuthors.next(this._authors);
+    }).catch((error) => {
+      return this.handleError(error);
+    });
   }
 
   public getAuthor(id: string): Promise<Author> {
-    throw new Error("Method not implemented.");
+    return this.http.get(this.url + "/" + id, {
+      headers: this.headers
+    }).toPromise().then((response) => {
+      const a = response.json();
+      const author = new Author(a._id, a._name);
+      console.log('GET: ' + this.url + "/" + id);
+      console.log(author);
+      return author;
+    }).catch((error) => {
+      return this.handleError(error);
+    });
   }
 
   public getAuthorName(name: string): Author {
-    throw new Error("Method not implemented.");
+    const author = this._authors.find(a => a.name === name);
+    if(author) {
+      return author;
+    } else {
+      return new Author(null, name);
+    }
   }
+
+  private handleError(error: any): Promise<any> {
+		console.log('handleError');
+		return Promise.reject(error.message || error);
+	}
 }

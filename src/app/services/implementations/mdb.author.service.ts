@@ -20,7 +20,7 @@ export class MDBAuthorService extends AuthorServiceBase {
 
   constructor(private http: Http) {
     super();
-    this.getAuthors();
+    //this.getAuthors();
   }
 
 	public getObserveAuthors(): BehaviorSubject<Author[]>  {
