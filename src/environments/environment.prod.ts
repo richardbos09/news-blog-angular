@@ -5,5 +5,6 @@
 
 export const environment = {
   production: true,
-  serverUrl: 'https://node-mongodb-server.herokuapp.com/api/v1'
+  mongoUrl: 'https://news-blog-angular.herokuapp.com/api/v1',
+  neo4jUrl: 'https://news-blog-angular.herokuapp.com/api/neo4j/v1',
 };
