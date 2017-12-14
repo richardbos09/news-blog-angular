@@ -13,7 +13,7 @@ import { Archive } from '../../../models/archive.model';
 })
 export class BlogPostsComponent implements OnInit, OnDestroy {
   public title: string = "The News Blog";
-  public description: string = "The official blog website created with Bootstrap";
+  public description: string = "The official blog website created by Richard Bos 2115382";
   public blogs: Array<Blog>;
   private subs: Array<Subscription> = [
     new Subscription(),
