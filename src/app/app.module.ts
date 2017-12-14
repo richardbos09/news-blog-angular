@@ -57,8 +57,8 @@ import { NGDBAuthorService } from './services/implementations/ngdb.author.servic
     UserService,
     { provide: ArchiveServiceBase, useClass: MDBArchiveService },
     { provide: BlogServiceBase, useClass: MDBBlogService },
-    // { provide: AuthorServiceBase, useClass: MDBAuthorService },
-    { provide: AuthorServiceBase, useClass: NGDBAuthorService},
+    { provide: AuthorServiceBase, useClass: MDBAuthorService },
+    // { provide: AuthorServiceBase, useClass: NGDBAuthorService},
   ],
   bootstrap: [AppComponent]
 })
