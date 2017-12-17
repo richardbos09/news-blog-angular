@@ -27,6 +27,7 @@ import { BlogSearchComponent } from './components/blogs/blog-search/blog-search.
 import { DropdownDirective } from './directives/dropdown.directive';
 import { BlogFormComponent } from './components/blogs/blog-form/blog-form.component';
 import { NGDBAuthorService } from './services/implementations/ngdb.author.service';
+import { NGDBBlogService } from './services/implementations/ngdb.blog.service';
 
 @NgModule({
   declarations: [
@@ -56,9 +57,10 @@ import { NGDBAuthorService } from './services/implementations/ngdb.author.servic
   providers: [
     UserService,
     { provide: ArchiveServiceBase, useClass: MDBArchiveService },
-    { provide: BlogServiceBase, useClass: MDBBlogService },
+    // { provide: BlogServiceBase, useClass: MDBBlogService },
     // { provide: AuthorServiceBase, useClass: MDBAuthorService },
-    { provide: AuthorServiceBase, useClass: NGDBAuthorService},
+    { provide: BlogServiceBase, useClass: NGDBBlogService},
+    { provide: AuthorServiceBase, useClass: NGDBAuthorService}
   ],
   bootstrap: [AppComponent]
 })
